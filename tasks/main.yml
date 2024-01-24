@@ -1,17 +1,17 @@
 ---
-- name: downloading {{ dumb_init_url }} to {{ dumb_init_exe }}
+- name: Downloading {{ dumb_init_url }} to {{ dumb_init_exe }}
   become: true
   become_user: root
-  get_url:
+  ansible.builtin.get_url:
     url: '{{ dumb_init_url }}'
     dest: '{{ dumb_init_exe }}'
     checksum: '{{ dumb_init_checksum }}'
-    mode: 0755
+    mode: '755'
 
-- name: linking {{ dumb_init_link }} to {{ dumb_init_exe }}
+- name: Linking {{ dumb_init_link }} to {{ dumb_init_exe }}
   become: true
   become_user: root
-  file:
+  ansible.builtin.file:
     src: '{{ dumb_init_exe }}'
     dest: '{{ dumb_init_link }}'
     state: link
